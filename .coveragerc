@@ -1,0 +1,5 @@
+[run]
+include = riesgo_ductos/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin
