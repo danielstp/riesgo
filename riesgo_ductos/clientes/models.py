@@ -10,7 +10,7 @@ class Telefono(models.Model):
 class Empresa(models.Model):
     código = models.CharField(primary_key=True, max_length=255)
     nombre = models.CharField(max_length=255)
-    telefonos = models.ManyToMany(Telefono)
+    telefonos = models.ManyToManyField(Telefono)
     def __str__(self):
         return self.nombre
 
@@ -18,7 +18,7 @@ class Empresa(models.Model):
 class Contacto(models.Model):
     nombre = models.CharField(max_length=255)
     empresa = models.ForeignKey(Empresa, on_delete=models.PROTECT)
-    telefonos = models.ManyToMany(Telefono)
+    telefonos = models.ManyToManyField(Telefono)
     def __str__(self):
         return self.nombre + " " + self.empresa.nombre
 
