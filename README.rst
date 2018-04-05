@@ -73,6 +73,14 @@ Deployment
 
 The following details how to deploy this application.
 
+1. Create a virtual enviroment (python3 -m venv venv)
+2. Start the venv (source venv/bin/activate)
+3. Install all dependencies (pip install -r requirements/local.txt)
+4. Create postgres database "createbd -O usuario riesgo_ductos"
+5. Migrate (./manage.py migrate)
+6. Create a superuser (./manage.py createsuperuser)
+7. Run server (./manage.py runserver)
+
 
 
 
