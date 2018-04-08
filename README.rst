@@ -80,7 +80,3 @@ The following details how to deploy this application.
 5. Migrate (./manage.py migrate)
 6. Create a superuser (./manage.py createsuperuser)
 7. Run server (./manage.py runserver)
-
-
-
-
