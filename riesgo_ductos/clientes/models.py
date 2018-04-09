@@ -31,3 +31,25 @@ class Equipo(models.Model):
     def __str__(self):
         return self.nombre
 
+class Historia(models.Model):
+    fecha = models.DateTimeField()
+
+class HInspeccion(Historia):
+    equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
+
+class HMantenimiento(Historia):
+    equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
+
+class HEquipo(Historia):
+    equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
+
+class Formula(models.Model):
+    nombre = models.CharField(max_length=200)
+
+class Parametro(models.Model):
+    formula = models.ForeignKey(Formula, on_delete=models.PROTECT)
+
+class HEquipoParametro(Historia):
+    equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
+    parametro = models.ForeignKey(Parametro, on_delete=models.PROTECT)
+    
