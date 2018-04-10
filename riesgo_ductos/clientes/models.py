@@ -22,6 +22,19 @@ class Contacto(models.Model):
     def __str__(self):
         return self.nombre + " " + self.empresa.nombre
 
+class Proyecto(models.Model):
+    nombre = models.CharField(max_length=255)
+    empresa = models.ForeignKey(Empresa, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.nombre + " " + self.empresa.nombre
+
+class PnID(models.Model):
+    nombre = models.CharField(max_length=255)
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.nombre + " " + self.proyecto.nombre
 
 class Equipo(models.Model):
     cliente = models.ForeignKey(Empresa, on_delete=models.PROTECT)
@@ -54,16 +67,3 @@ class HEquipoParametro(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
     parametro = models.ForeignKey(Parametro, on_delete=models.PROTECT)
 
-class Proyecto(models.Model):
-    nombre = models.CharField(max_length=255)
-    empresa = models.ForeignKey(Empresa, on_delete=models.PROTECT)
-
-    def __str__(self):
-        return self.nombre + " " + self.empresa.nombre
-
-class PnID(models.Model):
-    nombre = models.CharField(max_length=255)
-    proyecto = models.ForeignKey(Proyecto, on_delete=models.PROTECT)
-
-    def __str__(self):
-        return self.nombre + " " + self.proyecto.nombre
