@@ -74,6 +74,10 @@ class HEquipo(Historia):
 
 class Formula(models.Model):
     nombre = models.CharField(max_length=255)
+    formula = models.TextField()
+
+    def calc(self, equipo):
+        return eval(self.formula)
 
 class HEquipoParametro(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
