@@ -8,8 +8,9 @@ class TipoTel(models.Model):
 class Telefono(models.Model):
     telefono = models.IntegerField(primary_key=True)
     tipo = models.ForeignKey(TipoTel, on_delete=models.PROTECT)
-    def __int__(self):
-        return self.telefono
+    def __str__(self):
+        return str(self.telefono)+" - "+self.tipo.nombre
+
 
 class Empresa(models.Model):
     código = models.CharField(primary_key=True, max_length=255)
