@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Equipo, Empresa, Proyecto, PnID, Parametro
+from .models import Equipo, Empresa, Proyecto, PnID, Parametro, HEquipoParametro
 
 def crear_equipo(nombre):
     """
@@ -31,3 +31,23 @@ class ParametroTest(TestCase):
             Parametro.objects.all(),
             ['<Parametro: Parametro 1>']
         )
+
+class HEquipoParametroTest(TestCase):
+    def test_crea_HEP(self):
+        e1 = crear_equipo(nombre="E1")
+        p1 = Parametro.objects.create(nombre="Parametro 1")
+        HEquipoParametro.objects.create(equipo=e1, parametro=p1, valor=5.2)
+        self.assertIsNot(
+            HEquipoParametro.objects.all(),
+            []
+        )
+
+    def test_get_ultimo_valor(self):
+        e1 = crear_equipo(nombre="E1")
+        p1 = Parametro.objects.create(nombre="Parametro 1")
+        HEquipoParametro.objects.create(equipo=e1, parametro=p1, valor=5.2)
+        import time
+        time.sleep(1)
+        HEquipoParametro.objects.create(equipo=e1, parametro=p1, valor=2.2)
+        valor = HEquipoParametro.get_ultimo_valor(equipo=e1, parametro=p1)
+        self.assertEqual(valor, 2.2)
