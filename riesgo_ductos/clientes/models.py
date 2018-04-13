@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class TipoTel(models.Model):
     nombre = models.CharField(max_length=255)
@@ -60,7 +61,7 @@ class Equipo(models.Model):
         return self.nombre
 
 class Historia(models.Model):
-    fecha = models.DateTimeField()
+    fecha = models.DateTimeField(default=timezone.now)
 
 class HInspeccion(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
@@ -77,6 +78,17 @@ class Formula(models.Model):
 class HEquipoParametro(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
     parametro = models.ForeignKey(Parametro, on_delete=models.PROTECT)
+    valor = models.FloatField()
+
+    def __str__(self):
+        return str(self.fecha) + " " + str(self.equipo) + " " + str(self.parametro) + " " + str(self.valor)
+
+    @staticmethod
+    def get_ultimo_valor(equipo, parametro):
+        valor = HEquipoParametro.objects.filter(equipo=equipo, parametro=parametro).order_by('-fecha')
+        if valor:
+            return valor[0].valor
+        return None
 
 class Enum(Parametro):
     valor = models.IntegerField()
