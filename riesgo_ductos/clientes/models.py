@@ -40,11 +40,20 @@ class PnID(models.Model):
     def __str__(self):
         return self.nombre + " " + self.proyecto.nombre
 
+class Parametro(models.Model):
+    nombre = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nombre
+    # class Meta:
+    #     abstract = True
+
 class Equipo(models.Model):
     cliente = models.ForeignKey(Empresa, on_delete=models.PROTECT)
     nombre = models.CharField(max_length=255)
     descripción = models.TextField()
     pnid = models.ForeignKey(PnID, on_delete=models.PROTECT)
+    parametros = models.ManyToManyField(Parametro, through='HEquipoParametro')
 
     def __str__(self):
         return self.nombre
@@ -62,12 +71,25 @@ class HEquipo(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
 
 class Formula(models.Model):
-    nombre = models.CharField(max_length=200)
-
-class Parametro(models.Model):
-    formula = models.ForeignKey(Formula, on_delete=models.PROTECT)
+    nombre = models.CharField(max_length=255)
 
 class HEquipoParametro(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
     parametro = models.ForeignKey(Parametro, on_delete=models.PROTECT)
 
+class Enum(Parametro):
+    valor = models.IntegerField()
+
+class Fecha(Parametro):
+    valor = models.DateField()
+
+class Numero(Parametro):
+    valor = models.FloatField()
+
+class Mapa(models.Model):
+    enum = models.ForeignKey(Enum, on_delete=models.PROTECT)
+    clave = models.CharField(max_length=255)
+    valor = models.IntegerField()
+
+    def __str__(self):
+        return self.clave
