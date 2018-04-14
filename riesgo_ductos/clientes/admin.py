@@ -4,8 +4,8 @@ from .models import (Telefono, TipoTel, Empresa, Contacto, Proyecto, PnID, Equip
     Historia, HInspeccion, HMantenimiento, HEquipo, Formula, Parametro, 
     HEquipoParametro)
 
+@admin.register(Formula)
 class FormulaAdmin(admin.ModelAdmin):
-    model = Formula
     fields = ('nombre', 'formula')
     # fieldsets = [(None, {'fields': ['nombre','calc']}),]
     # readonly_fields = ['calc']
@@ -25,7 +25,5 @@ admin.site.register(Historia)
 admin.site.register(HInspeccion)
 admin.site.register(HMantenimiento)
 admin.site.register(HEquipo)
-admin.site.register(Formula)
 admin.site.register(Parametro)
 admin.site.register(HEquipoParametro)
-admin.site.register(FormulaAdmin)
