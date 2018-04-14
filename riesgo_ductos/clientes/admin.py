@@ -3,6 +3,17 @@ from django.contrib import admin
 from .models import (Telefono, TipoTel, Empresa, Contacto, Proyecto, PnID, Equipo,
     Historia, HInspeccion, HMantenimiento, HEquipo, Formula, Parametro, 
     HEquipoParametro)
+
+class FormulaAdmin(admin.ModelAdmin):
+    model = Formula
+    fields = ('nombre', 'formula')
+    # fieldsets = [(None, {'fields': ['nombre','calc']}),]
+    # readonly_fields = ['calc']
+    # def calc(self, obj):
+    #     return obj.calc(Equipo.objects.get(pk=1))
+    # calc.allow_tags = True
+    # calc.short_description = 'Calcular'
+
 admin.site.register(Telefono)
 admin.site.register(TipoTel)
 admin.site.register(Empresa)
@@ -17,3 +28,4 @@ admin.site.register(HEquipo)
 admin.site.register(Formula)
 admin.site.register(Parametro)
 admin.site.register(HEquipoParametro)
+admin.site.register(FormulaAdmin)
