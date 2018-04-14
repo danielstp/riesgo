@@ -1,0 +1,1 @@
+[{"model": "clientes.contacto", "pk": 1, "fields": {"nombre": "John Doe", "empresa": "PB_01", "telefonos": [79999999]}}]
