@@ -63,21 +63,29 @@ class Equipo(models.Model):
 class Historia(models.Model):
     fecha = models.DateTimeField(default=timezone.now)
 
+
 class HInspeccion(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
+
 
 class HMantenimiento(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
 
+
 class HEquipo(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)
+
 
 class Formula(models.Model):
     nombre = models.CharField(max_length=255)
     formula = models.TextField()
 
-    def calc(self, equipo):
+    def calc(self, equipo=None):
         return eval(self.formula)
+
+    def __str__(self):
+        return self.nombre
+
 
 class HEquipoParametro(Historia):
     equipo = models.ForeignKey(Equipo, on_delete=models.PROTECT)

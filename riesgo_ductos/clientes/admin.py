@@ -1,12 +1,13 @@
 from django.contrib import admin
 
-from .models import (Telefono, TipoTel, Empresa, Contacto, Proyecto, PnID, Equipo,
-    Historia, HInspeccion, HMantenimiento, HEquipo, Formula, Parametro, 
+from .models import (Telefono, TipoTel, Empresa, Contacto, Proyecto, PnID,
+    Equipo, Historia, HInspeccion, HMantenimiento, HEquipo, Formula, Parametro,
     HEquipoParametro)
 
 @admin.register(Formula)
 class FormulaAdmin(admin.ModelAdmin):
     fields = ('nombre', 'formula')
+    list_display = ['calc']
     # fieldsets = [(None, {'fields': ['nombre','calc']}),]
     # readonly_fields = ['calc']
     # def calc(self, obj):
