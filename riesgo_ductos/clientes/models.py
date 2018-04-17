@@ -102,6 +102,14 @@ class HEquipoParametro(Historia):
             return valor[0].valor
         return None
 
+class Formulario(models.Model):
+    nombre = models.CharField(max_length=255)
+    formulas = models.ManyToManyField(Formula, through='FormularioFormula')
+
+class FormularioFormula(models.Model):
+    fomulario = models.ForeignKey(Formulario, on_delete=models.PROTECT)
+    fomula = models.ForeignKey(Formula, on_delete=models.PROTECT)
+
 class Enum(Parametro):
     valor = models.IntegerField()
 
