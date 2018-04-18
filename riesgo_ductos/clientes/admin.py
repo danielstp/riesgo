@@ -15,6 +15,7 @@ class FormulaAdmin(admin.ModelAdmin):
     calc.allow_tags = True
     calc.short_description = 'Resultado'
 
+
 class HEquipoParametroInline(admin.TabularInline):
     model = HEquipoParametro
     extra = 3
@@ -25,9 +26,13 @@ class EquipoAdmin(admin.ModelAdmin):
     search_fields = ['nombre']
 
 
+class EmpresaAdmin(admin.ModelAdmin):
+    filter_horizontal = ['telefonos']
+
+
 admin.site.register(Telefono)
 admin.site.register(TipoTel)
-admin.site.register(Empresa)
+admin.site.register(Empresa, EmpresaAdmin)
 admin.site.register(Contacto)
 admin.site.register(Proyecto)
 admin.site.register(PnID)
