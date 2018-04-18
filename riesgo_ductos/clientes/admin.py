@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (Telefono, TipoTel, Empresa, Contacto, Proyecto, PnID,
     Equipo, Historia, HInspeccion, HMantenimiento, HEquipo, Formula, Parametro,
-    HEquipoParametro)
+    HEquipoParametro, Formulario)
 
 @admin.register(Formula)
 class FormulaAdmin(admin.ModelAdmin):
@@ -38,3 +38,7 @@ admin.site.register(HMantenimiento)
 admin.site.register(HEquipo)
 admin.site.register(Parametro)
 admin.site.register(HEquipoParametro)
+admin.site.register(Formulario)
+
+admin.site.site_header = "Administración RBI"
+admin.site.site_title = "Sitio de Administración del Sistema RBI"
