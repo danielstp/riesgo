@@ -41,6 +41,9 @@ class PnID(models.Model):
 
     def __str__(self):
         return self.nombre + " " + self.proyecto.nombre
+    
+    class Meta:
+        verbose_name = "P&ID"
 
 class Parametro(models.Model):
     nombre = models.CharField(max_length=255)
