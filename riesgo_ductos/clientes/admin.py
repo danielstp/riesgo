@@ -15,13 +15,16 @@ class FormulaAdmin(admin.ModelAdmin):
     # calc.allow_tags = True
     # calc.short_description = 'Calcular'
 
+class EquipoAdmin(admin.ModelAdmin):
+    search_fields = ['nombre']
+
 admin.site.register(Telefono)
 admin.site.register(TipoTel)
 admin.site.register(Empresa)
 admin.site.register(Contacto)
 admin.site.register(Proyecto)
 admin.site.register(PnID)
-admin.site.register(Equipo)
+admin.site.register(Equipo, EquipoAdmin)
 admin.site.register(Historia)
 admin.site.register(HInspeccion)
 admin.site.register(HMantenimiento)
