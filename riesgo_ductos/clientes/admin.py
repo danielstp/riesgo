@@ -15,8 +15,15 @@ class FormulaAdmin(admin.ModelAdmin):
     # calc.allow_tags = True
     # calc.short_description = 'Calcular'
 
+class HEquipoParametroInline(admin.TabularInline):
+    model = HEquipoParametro
+    extra = 3
+
+
 class EquipoAdmin(admin.ModelAdmin):
+    inlines = [HEquipoParametroInline]
     search_fields = ['nombre']
+
 
 admin.site.register(Telefono)
 admin.site.register(TipoTel)
