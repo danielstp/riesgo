@@ -82,6 +82,7 @@ class HEquipo(Historia):
 class Formula(models.Model):
     nombre = models.CharField(max_length=255)
     formula = models.TextField()
+    parametros = models.ManyToManyField(Parametro)
 
     def calc(self, equipo=None):
         return eval(self.formula)
