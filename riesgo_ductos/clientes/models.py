@@ -85,7 +85,7 @@ class Formula(models.Model):
     parametros = models.ManyToManyField(Parametro)
 
     def calc(self, equipo=None):
-        return eval(self.formula)
+        return self.formula and eval(self.formula)
 
     def __str__(self):
         return self.nombre
