@@ -7,12 +7,10 @@ from .models import (Telefono, TipoTel, Empresa, Contacto, Proyecto, PnID,
 @admin.register(Formula)
 class FormulaAdmin(admin.ModelAdmin):
     fields = ('nombre', 'formula', 'calc')
-    list_display = ['calc']
-    readonly_fields = ['calc']
+    list_display = ['nombre', 'calc']
+    readonly_fields = ('calc',)
     def calc(self, obj):
-        if obj.formula:
-            return obj.calc()
-        return 0
+        return obj.calc() or 0
     calc.allow_tags = True
     calc.short_description = 'Resultado'
 
