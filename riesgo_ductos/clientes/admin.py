@@ -18,6 +18,7 @@ class FormulaAdmin(admin.ModelAdmin):
 class HEquipoParametroInline(admin.TabularInline):
     model = HEquipoParametro
     extra = 3
+    classes = ['collapse']
 
 
 class EquipoAdmin(admin.ModelAdmin):
