@@ -41,7 +41,7 @@ class PnID(models.Model):
 
     def __str__(self):
         return self.nombre + " " + self.proyecto.nombre
-    
+
     class Meta:
         verbose_name = "P&ID"
 
@@ -65,6 +65,9 @@ class Equipo(models.Model):
 
 class Historia(models.Model):
     fecha = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        abstract = True
 
 
 class HInspeccion(Historia):
@@ -106,22 +109,33 @@ class HEquipoParametro(Historia):
             return valor[0].valor
         return None
 
+
+class Resultado(models.Model):
+    formula = models.ForeignKey(Formula, on_delete=models.PROTECT)
+    valor = models.ForeignKey(HEquipoParametro, on_delete=models.PROTECT)
+
+
 class Formulario(models.Model):
     nombre = models.CharField(max_length=255)
     formulas = models.ManyToManyField(Formula, through='FormularioFormula')
+
 
 class FormularioFormula(models.Model):
     fomulario = models.ForeignKey(Formulario, on_delete=models.PROTECT)
     fomula = models.ForeignKey(Formula, on_delete=models.PROTECT)
 
+
 class Enum(Parametro):
     valor = models.IntegerField()
+
 
 class Fecha(Parametro):
     valor = models.DateField()
 
+
 class Numero(Parametro):
     valor = models.FloatField()
+
 
 class Mapa(models.Model):
     enum = models.ForeignKey(Enum, on_delete=models.PROTECT)

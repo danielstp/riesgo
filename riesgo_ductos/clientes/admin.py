@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (Telefono, TipoTel, Empresa, Contacto, Proyecto, PnID,
-    Equipo, Historia, HInspeccion, HMantenimiento, HEquipo, Formula, Parametro,
+    Equipo, Resultado, HInspeccion, HMantenimiento, HEquipo, Formula, Parametro,
     HEquipoParametro, Formulario)
 
 @admin.register(Formula)
@@ -36,7 +36,7 @@ admin.site.register(Contacto)
 admin.site.register(Proyecto)
 admin.site.register(PnID)
 admin.site.register(Equipo, EquipoAdmin)
-admin.site.register(Historia)
+admin.site.register(Resultado)
 admin.site.register(HInspeccion)
 admin.site.register(HMantenimiento)
 admin.site.register(HEquipo)
